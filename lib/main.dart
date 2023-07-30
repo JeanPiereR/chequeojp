@@ -1,3 +1,4 @@
+import 'package:chequeo_f_h/config/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,8 +10,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+
+      ///Seleccion del tema a usar
+      theme: AppTheme(selectedColor: 0).getTheme(),
+      home: const Scaffold(
         body: Center(
           child: Text('Hello Worf!'),
         ),
