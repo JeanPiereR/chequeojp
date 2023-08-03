@@ -1,4 +1,5 @@
 import 'package:chequeo_f_h/config/theme/app_theme.dart';
+import 'package:chequeo_f_h/presentation/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,15 +12,12 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
 
-      ///Seleccion del tema a usar
-      theme: AppTheme(selectedColor: 0).getTheme(),
-      home: const Scaffold(
-        body: Center(
-          child: Text('Hello Worf!'),
-        ),
-      ),
-    );
+        ///Seleccion del tema a usar
+        theme: AppTheme(selectedColor: 0).getTheme(),
+
+        ///Home Screen
+        home: const HomeScreen());
   }
 }

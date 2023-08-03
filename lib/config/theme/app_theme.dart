@@ -23,6 +23,8 @@ class AppTheme {
             "El color seleccionado debe ser igual o menor a ${colorList.length}");
 
   ///Deifinicion del tema a usar
-  ThemeData getTheme() =>
-      ThemeData(useMaterial3: true, colorSchemeSeed: colorList[selectedColor]);
+  ThemeData getTheme() => ThemeData(
+      useMaterial3: true,
+      colorSchemeSeed: colorList[selectedColor],
+      appBarTheme: const AppBarTheme(centerTitle: true));
 }
