@@ -1,3 +1,6 @@
+// ignore_for_file: non_constant_identifier_names, camel_case_types
+
+import 'package:chequeo_f_h/config/menu_items/menu_items.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,6 +12,52 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Check List y Biblioteca Virtual"),
       ),
+      body: const _Home_View(),
+    );
+  }
+}
+
+class _Home_View extends StatelessWidget {
+  const _Home_View();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+
+        ///El ListView se adaptara de forma automatica al N° de items
+        itemCount: appMenuItems.length,
+
+        ///Listado de modulos
+        itemBuilder: (context, index) {
+          final MenuItem = appMenuItems[index];
+
+          return _customMenuTile(menuItem: MenuItem);
+        });
+  }
+}
+
+class _customMenuTile extends StatelessWidget {
+  const _customMenuTile({
+    required this.menuItem,
+  });
+
+  final MenuItem menuItem;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return ListTile(
+      leading: Icon(menuItem.icon, color: colors.primary),
+      trailing: Icon(
+        Icons.arrow_forward_ios_rounded,
+        color: colors.primary,
+      ),
+      title: Text(menuItem.title),
+      subtitle: Text(menuItem.subTitle),
+      onTap: () {
+        //TODO IMPLEMENTAR GO_ROUTER
+      },
     );
   }
 }
