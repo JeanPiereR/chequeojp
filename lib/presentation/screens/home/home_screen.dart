@@ -47,14 +47,24 @@ class _customMenuTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
 
+    ///Vista de nuestro Drawer
     return ListTile(
+      ///Icono izquierdo
       leading: Icon(menuItem.icon, color: colors.primary),
+
+      ///Flecha derecha
       trailing: Icon(
         Icons.arrow_forward_ios_rounded,
         color: colors.primary,
       ),
+
+      ///Titulo
       title: Text(menuItem.title),
+
+      ///Subtitulo
       subtitle: Text(menuItem.subTitle),
+
+      ///Accion al presionar
       onTap: () {
         //TODO IMPLEMENTAR GO_ROUTER
       },
