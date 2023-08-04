@@ -2,6 +2,7 @@
 
 import 'package:chequeo_f_h/config/menu_items/menu_items.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -66,7 +67,9 @@ class _customMenuTile extends StatelessWidget {
 
       ///Accion al presionar
       onTap: () {
-        //TODO IMPLEMENTAR GO_ROUTER
+        ///Establecemos que al presionar redireccione al Link del menuItem
+        ///El .push permite el retroceder a una pantalla anterior
+        context.push(menuItem.link);
       },
     );
   }

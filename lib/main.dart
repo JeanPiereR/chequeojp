@@ -1,5 +1,5 @@
+import 'package:chequeo_f_h/config/router/app_router.dart';
 import 'package:chequeo_f_h/config/theme/app_theme.dart';
-import 'package:chequeo_f_h/presentation/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,13 +11,15 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
+    ///Anexamos nuestro MaterialApp con go_router
+    return MaterialApp.router(
+      ///Incluimos el sistema de rutas
+      routerConfig: appRouter,
 
-        ///Seleccion del tema a usar
-        theme: AppTheme(selectedColor: 0).getTheme(),
+      debugShowCheckedModeBanner: false,
 
-        ///Home Screen
-        home: const HomeScreen());
+      ///Seleccion del tema a usar
+      theme: AppTheme(selectedColor: 5).getTheme(),
+    );
   }
 }
