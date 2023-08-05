@@ -2,6 +2,7 @@
 
 import 'package:chequeo_f_h/config/menu_items/menu_items.dart';
 import 'package:chequeo_f_h/presentation/drawers/side_menu.dart';
+import 'package:chequeo_f_h/presentation/screens/home_noticias/home_noticias.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,9 +13,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Check List y Biblioteca Virtual"),
+        title: const Text("Informaciones y ultimos incidentes"),
       ),
-      body: const _Home_View(),
+      body: const HomeNoticias(), //_Home_View
       drawer: const SideMenu(),
     );
   }
