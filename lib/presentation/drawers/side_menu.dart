@@ -32,20 +32,31 @@ class _SideMenuState extends State<SideMenu> {
           context.push(MenuItem.link);
         },
         children: [
+          ///Linea divisora
+          const Padding(
+              padding: EdgeInsets.fromLTRB(28, 16, 28, 10), child: Divider()),
+
           const Padding(
               padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
               child: Text("Modulos")),
 
           ///Realizamos un mapero de appMenuItem y solo traemos el titulo
           ///con su icono
-          ...appMenuItems.map(
-            (item) => NavigationDrawerDestination(
-                icon: Icon(item.icon), label: Text(item.title)),
-          ),
+          ...appMenuItems
+              .sublist(0,
+                  3) //Este sublist permite ver la cantidad de modulos a mostrar
+              .map(
+                (item) => NavigationDrawerDestination(
+                    icon: Icon(item.icon), label: Text(item.title)),
+              ),
 
           ///Linea divisora
           const Padding(
               padding: EdgeInsets.fromLTRB(28, 16, 28, 10), child: Divider()),
+
+          const Padding(
+              padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
+              child: Text("Log Out")),
 
           //TODO IMPLEMENTAR LOG OUT
         ]);
