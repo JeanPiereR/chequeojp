@@ -1,4 +1,6 @@
+import 'package:chequeo_f_h/features/auth/presentation/providers/login_form_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../shared/shared.dart';
@@ -46,11 +48,17 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class _LoginForm extends StatelessWidget {
+///Se transformo en un consumerWidget una vez creada el login_form_provider
+class _LoginForm extends ConsumerWidget {
   const _LoginForm();
 
   @override
-  Widget build(BuildContext context) {
+
+  ///se adiciono el widgetRef login_form_provider
+  Widget build(BuildContext context, WidgetRef ref) {
+    ///Se incluye con base a login_form_provider
+    final LoginForm = ref.watch(loginFormProvider);
+
     final textStyles = Theme.of(context).textTheme;
 
     return Padding(
@@ -60,14 +68,27 @@ class _LoginForm extends StatelessWidget {
           const SizedBox(height: 50),
           Text('Login', style: textStyles.titleLarge),
           const SizedBox(height: 90),
-          const CustomTextFormField(
+          CustomTextFormField(
             label: 'Correo',
             keyboardType: TextInputType.emailAddress,
+
+            ///OnChanges y errorMessage son post Provider
+            onChanged: ref.read(loginFormProvider.notifier).onEmailChange,
+
+            ///Se establece que el msn de error solo salte una vez
+            ///presionado el ingresar
+            errorMessage:
+                LoginForm.isFormPosted ? LoginForm.email.errorMessage : null,
           ),
           const SizedBox(height: 30),
-          const CustomTextFormField(
+          CustomTextFormField(
             label: 'Contraseña',
             obscureText: true,
+
+            ///OnChanges y errorMessage son post Provider
+            onChanged: ref.read(loginFormProvider.notifier).onPasswordChanged,
+            errorMessage:
+                LoginForm.isFormPosted ? LoginForm.password.errorMessage : null,
           ),
           const SizedBox(height: 30),
           SizedBox(
@@ -76,7 +97,10 @@ class _LoginForm extends StatelessWidget {
               child: CustomFilledButton(
                 text: 'Ingresar',
                 buttonColor: Colors.black,
-                onPressed: () {},
+                onPressed: () {
+                  ///Post Provider
+                  ref.read(loginFormProvider.notifier).onFormSubmit();
+                },
               )),
           const Spacer(flex: 2),
           Row(
