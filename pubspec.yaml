@@ -15,6 +15,8 @@ dependencies:
   provider: ^6.0.5
   riverpod: ^2.3.6
   flutter_riverpod: ^2.3.6
+  flutter_dotenv: ^5.1.0
+  dio: ^5.3.2
 
 dev_dependencies:
   flutter_test:
@@ -25,6 +27,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - .env
     - assets/loaders/
     - assets/images/
     - google_fonts/montserrat_alternates/
