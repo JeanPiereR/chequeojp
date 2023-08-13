@@ -11,8 +11,9 @@ class AuthRepositoryImpl extends AuthRepository {
 
   ///Creamos un sistema en donde ocupa el DataSource pero si no lo encuentra
   ///que lo cree
-  AuthRepositoryImpl(AuthDataSource? dataSource)
-      : dataSource = dataSource ?? AuthDataSourceImple();
+  AuthRepositoryImpl({
+    AuthDataSource? dataSource
+    }) : dataSource = dataSource ?? AuthDataSourceImple();
 
   @override
   Future<User> checkAuthStatus(String token) {

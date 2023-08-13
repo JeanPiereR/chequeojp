@@ -31,8 +31,11 @@ class AuthDataSourceImple extends AuthDataSource {
 
       final user = UserMapper.userJsonToEntity(response.data);
       return user;
+
     } catch (e) {
+
       throw WrongCredential();
+      
     }
   }
 

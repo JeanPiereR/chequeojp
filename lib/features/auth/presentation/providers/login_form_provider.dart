@@ -1,3 +1,4 @@
+import 'package:chequeo_f_h/features/auth/presentation/providers/auth_provider.dart';
 import 'package:chequeo_f_h/features/shared/infrastructure/inputs/email.dart';
 import 'package:chequeo_f_h/features/shared/infrastructure/inputs/password.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,27 +50,35 @@ class LoginFormState {
 //! 2.- Como implementamos el notificador
 
 class LoginFormNotifier extends StateNotifier<LoginFormState> {
-  LoginFormNotifier() : super(LoginFormState());
+
+  final Function(String, String) loginUserCallback;//5.-
+
+  LoginFormNotifier({
+    required this.loginUserCallback, //6.-
+  }) : super(LoginFormState());
 
   onEmailChange(String value) {
     final newEmail = Email.dirty(value);
     state = state.copyWith(
-        email: newEmail, isValid: Formz.validate([newEmail, state.password]));
+        email: newEmail,
+        isValid: Formz.validate([newEmail, state.password])
+        );
   }
 
   onPasswordChanged(String value) {
     final newPassword = Password.dirty(value);
     state = state.copyWith(
         password: newPassword,
-        isValid: Formz.validate([newPassword, state.email]));
+        isValid: Formz.validate([newPassword, state.email])
+        );
   }
 
-  onFormSubmit() {
+  onFormSubmit() async {
     _touchEveryField();
 
     if (!state.isValid) return;
 
-    print(state);
+    await loginUserCallback(state.email.value, state.password.value); //8.-
   }
 
   _touchEveryField() {
@@ -80,7 +89,8 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
         isFormPosted: true,
         email: email,
         password: password,
-        isValid: Formz.validate([email, password]));
+        isValid: Formz.validate([email, password])
+        );
   }
 }
 
@@ -89,6 +99,11 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
 ///el AUTODISPOSE lo que hace es que destruye la pantalla una vez avanzada
 ///de esa manera, si queremos volver al login, no guardara nada
 final loginFormProvider =
-    StateNotifierProvider.autoDispose<LoginFormNotifier, LoginFormState>((ref) {
-  return LoginFormNotifier();
-});
+  StateNotifierProvider.autoDispose<LoginFormNotifier, LoginFormState>(
+    (ref) {
+
+      final loginUserCallback = ref.watch(authProvider.notifier).loginUser; //4.-
+      return LoginFormNotifier(
+        loginUserCallback: loginUserCallback //7.-
+      );
+  });
