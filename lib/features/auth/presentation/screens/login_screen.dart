@@ -1,3 +1,6 @@
+// ignore_for_file: non_constant_identifier_names
+
+import 'package:chequeo_f_h/features/auth/presentation/providers/auth_provider.dart';
 import 'package:chequeo_f_h/features/auth/presentation/providers/login_form_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -52,12 +55,26 @@ class LoginScreen extends StatelessWidget {
 class _LoginForm extends ConsumerWidget {
   const _LoginForm();
 
+  ///Configuracion msn de error personalizados
+  void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message))
+    );
+  }
+
   @override
 
   ///se adiciono el widgetRef login_form_provider
   Widget build(BuildContext context, WidgetRef ref) {
     ///Se incluye con base a login_form_provider
     final LoginForm = ref.watch(loginFormProvider);
+
+    ///Implementacion mensajes error personalizados
+    ref.listen(authProvider, (previous, next) {
+      if (next.errorMessage.isEmpty) return;
+      showSnackBar (context, next.errorMessage);
+    });
 
     final textStyles = Theme.of(context).textTheme;
 
