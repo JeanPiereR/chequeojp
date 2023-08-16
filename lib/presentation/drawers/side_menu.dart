@@ -1,17 +1,22 @@
 // ignore_for_file: unused_local_variable, non_constant_identifier_names
 
 import 'package:chequeo_f_h/config/menu_items/menu_items.dart';
+import 'package:chequeo_f_h/features/auth/presentation/providers/auth_provider.dart';
+import 'package:chequeo_f_h/features/shared/shared.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class SideMenu extends StatefulWidget {
+///Era un staful, pero al realizar el proceso de logout se cambio por
+///consumerWidget
+class SideMenu extends ConsumerStatefulWidget {
   const SideMenu({super.key});
 
   @override
-  State<SideMenu> createState() => _SideMenuState();
+  SideMenuState createState() => SideMenuState();
 }
 
-class _SideMenuState extends State<SideMenu> {
+class SideMenuState extends ConsumerState<SideMenu> {
   ///Donde iniciara el sombreado de nuestro drawer
   int navDrawerIndex = 0;
 
@@ -56,7 +61,17 @@ class _SideMenuState extends State<SideMenu> {
 
           const Padding(
               padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
-              child: Text("Log Out")),
+              child: Text("Mas Opciones")),
+          
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child:  CustomFilledButton(
+              text: "Cerrar sesión",
+              onPressed: () {
+                ref.read(authProvider.notifier).logout();
+              },
+              ),
+            ),
 
           //TODO IMPLEMENTAR LOG OUT
         ]);

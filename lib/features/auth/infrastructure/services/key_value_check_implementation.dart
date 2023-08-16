@@ -8,15 +8,16 @@ class KeyValueCheckImplementation extends KeyValueCheck{
   }
 
   @override
-  Future<T?> getValue<T>(String key) async {
+  Future<T?> getValue<T>(String key) async{
     final prefs = await getSharedPrefs();
 
     switch(T) {
       case int:
-        return prefs.getInt(key) as T?;
-      
+        return prefs.getInt( key ) as T?;
+        
+
       case String:
-        return prefs.getString(key) as T;
+        return prefs.getString(key) as T?;
       
       default:
         throw UnimplementedError(
