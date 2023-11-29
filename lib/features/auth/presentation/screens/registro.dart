@@ -3,11 +3,11 @@ import 'package:go_router/go_router.dart';
 
 import '../../../shared/shared.dart';
 
-class RegisterScreenJp extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
 
-  static const String name = "RegisterScreenJp";
+  static const String name = "RegisterPage";
 
-  const RegisterScreenJp({super.key});
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +101,11 @@ class _RegisterForm extends StatelessWidget {
           const CustomTextFormField(
             label: 'Repita la contraseña',
             obscureText: true,
+          ),
+
+          const SizedBox(height: 30),
+          const CustomTextFormField(
+            label: 'Privilegios',
           ),
 
 

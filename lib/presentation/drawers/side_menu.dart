@@ -24,6 +24,7 @@ class SideMenuState extends ConsumerState<SideMenu> {
   Widget build(BuildContext context) {
     ///Reconocimiento del margen superior con el fin de una buena UX
     final hasNotch = MediaQuery.of(context).viewPadding.top > 35;
+    final textStyles = Theme.of(context).textTheme;
 
     return NavigationDrawer(
         selectedIndex: navDrawerIndex,
@@ -37,6 +38,17 @@ class SideMenuState extends ConsumerState<SideMenu> {
           context.push(MenuItem.link);
         },
         children: [
+
+          Padding(
+          padding: EdgeInsets.fromLTRB(20, hasNotch ? 0 : 20, 16, 0),
+          child: Text('Saludos', style: textStyles.titleMedium ),
+          ),
+
+          Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 16, 10),
+          child: Text('Tony Stark', style: textStyles.titleSmall ),
+        ),
+
           ///Linea divisora
           const Padding(
               padding: EdgeInsets.fromLTRB(28, 16, 28, 10), child: Divider()),
@@ -62,7 +74,18 @@ class SideMenuState extends ConsumerState<SideMenu> {
           const Padding(
               padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
               child: Text("Mas Opciones")),
+
           
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child:  CustomFilledButton(
+              text: "Crear Cuenta",
+              onPressed: () => context.push('/registro'),
+              ),
+            ),
+
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child:  CustomFilledButton(
@@ -73,7 +96,9 @@ class SideMenuState extends ConsumerState<SideMenu> {
               ),
             ),
 
-          //TODO IMPLEMENTAR LOG OUT
+
+
+          
         ]);
   }
 }

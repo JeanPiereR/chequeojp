@@ -2,6 +2,7 @@
 
 import 'package:chequeo_f_h/features/auth/presentation/providers/auth_provider.dart';
 import 'package:chequeo_f_h/features/auth/presentation/providers/login_form_provider.dart';
+import 'package:chequeo_f_h/features/auth/presentation/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -94,20 +95,25 @@ class _LoginForm extends ConsumerWidget {
 
             ///Se establece que el msn de error solo salte una vez
             ///presionado el ingresar
-            errorMessage:
-                LoginForm.isFormPosted ? LoginForm.email.errorMessage : null,
+            errorMessage: LoginForm.isFormPosted ? LoginForm.email.errorMessage : null,
           ),
+
+
           const SizedBox(height: 30),
+
+        
           CustomTextFormField(
             label: 'Contraseña',
             obscureText: true,
-
+            onFieldSubmitted: ( _ ) => ref.read(loginFormProvider.notifier).onFormSubmit(),
             ///OnChanges y errorMessage son post Provider
             onChanged: ref.read(loginFormProvider.notifier).onPasswordChanged,
-            errorMessage:
-                LoginForm.isFormPosted ? LoginForm.password.errorMessage : null,
+            errorMessage: LoginForm.isFormPosted ? LoginForm.password.errorMessage : null,
           ),
+
+
           const SizedBox(height: 30),
+
           SizedBox(
               width: double.infinity,
               height: 60,
@@ -118,16 +124,12 @@ class _LoginForm extends ConsumerWidget {
                 ? null
                 : ref.read(loginFormProvider.notifier).onFormSubmit
               )),
+
+          
           const Spacer(flex: 2),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('¿No tienes cuenta?'),
-              TextButton(
-                  onPressed: () => context.push('/register'),
-                  child: const Text('Crea una aquí'))
-            ],
-          ),
+
+
+          
           const Spacer(flex: 1),
         ],
       ),

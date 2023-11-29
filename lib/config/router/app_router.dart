@@ -1,5 +1,6 @@
 import 'package:chequeo_f_h/config/router/app_router_notifier.dart';
 import 'package:chequeo_f_h/features/auth/presentation/screens/check_auth_status_screen.dart';
+import 'package:chequeo_f_h/features/auth/presentation/screens/registro.dart';
 import 'package:chequeo_f_h/features/auth/presentation/screens/screens.dart';
 import 'package:chequeo_f_h/presentation/screens/ARC/arc_screen.dart';
 import 'package:chequeo_f_h/presentation/screens/biblioteca/biblioteca_screen.dart';
@@ -55,7 +56,15 @@ final goRouterProvider = Provider((ref) {
         path: '/biblioteca',
         builder: (context, state) => const BibliotecaScreen(),
       ),
+
+      GoRoute(
+      path: '/registro',
+      builder: (context, state) => const RegisterPage(),
+      ),
+
     ],
+
+
 
     redirect: (context, state) {
       
