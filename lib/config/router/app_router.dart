@@ -6,6 +6,7 @@ import 'package:chequeo_f_h/presentation/screens/ARC/arc_screen.dart';
 import 'package:chequeo_f_h/presentation/screens/biblioteca/biblioteca_screen.dart';
 import 'package:chequeo_f_h/presentation/screens/home/home_screen.dart';
 import 'package:chequeo_f_h/presentation/screens/lista_preuso/preuso_screen.dart';
+import 'package:chequeo_f_h/presentation/screens/usuarios/usuarios.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -55,6 +56,11 @@ final goRouterProvider = Provider((ref) {
       GoRoute(
         path: '/biblioteca',
         builder: (context, state) => const BibliotecaScreen(),
+      ),
+
+      GoRoute(
+        path: '/usuarios',
+        builder: (context, state) => const UsersScreen(),
       ),
 
       GoRoute(

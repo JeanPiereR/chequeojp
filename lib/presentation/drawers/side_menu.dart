@@ -60,8 +60,7 @@ class SideMenuState extends ConsumerState<SideMenu> {
           ///Realizamos un mapero de appMenuItem y solo traemos el titulo
           ///con su icono
           ...appMenuItems
-              .sublist(0,
-                  3) //Este sublist permite ver la cantidad de modulos a mostrar
+              .sublist(0,4) //Este sublist permite ver la cantidad de modulos a mostrar
               .map(
                 (item) => NavigationDrawerDestination(
                     icon: Icon(item.icon), label: Text(item.title)),

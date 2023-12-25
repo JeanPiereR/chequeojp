@@ -29,4 +29,9 @@ const appMenuItems = <MenuItem>[
       subTitle: "Documentos M4",
       link: "/biblioteca",
       icon: Icons.check_box_sharp),
+  MenuItem(
+      title: "Usuarios",
+      subTitle: "Usuarios M4",
+      link: "/usuarios",
+      icon: Icons.supervised_user_circle_sharp),
 ];
