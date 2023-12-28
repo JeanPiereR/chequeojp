@@ -4,12 +4,12 @@ import 'package:chequeo_f_h/features/register/presentation/providers/register_re
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///STATE(3)
-final registerProvider = StateNotifierProvider < RegisterNotifier, RegisterState >((ref) {
+final registersProvider = StateNotifierProvider < RegistersNotifier, RegistersState >((ref) {
 
-  final registerRepository = ref.watch( registerRepositoryProvider);
+  final registersRepository = ref.watch( registersRepositoryProvider);
 
-  return RegisterNotifier (
-    registerRepository: registerRepository
+  return RegistersNotifier (
+    registersRepository: registersRepository
   );
 
 });
@@ -17,13 +17,13 @@ final registerProvider = StateNotifierProvider < RegisterNotifier, RegisterState
 
 
 ///NOTIFIER(2)
-class RegisterNotifier extends StateNotifier <RegisterState> {
+class RegistersNotifier extends StateNotifier <RegistersState> {
   
-  final RegisterRepository registerRepository;
+  final RegistersRepository registersRepository;
   
-  RegisterNotifier({
-    required this.registerRepository
-  }): super ( RegisterState() ) {
+  RegistersNotifier({
+    required this.registersRepository
+  }): super ( RegistersState() ) {
     loadNextPage();
   }
 
@@ -35,8 +35,8 @@ class RegisterNotifier extends StateNotifier <RegisterState> {
       isLoading: true
     );
 
-    final register = await registerRepository.getRegisterByPage( );
-    if (register.isNotEmpty) {
+    final register = await registersRepository.getRegisterByPage( );
+    if (register.isEmpty) {
       state = state.copyWhith(
         isLoading: false,
         isLastPage: true,
@@ -60,7 +60,7 @@ class RegisterNotifier extends StateNotifier <RegisterState> {
 
 
 ///STATE (1)
-class RegisterState {
+class RegistersState {
 
   final bool isLastPage;
   final int limit;
@@ -68,7 +68,7 @@ class RegisterState {
   final bool isLoading;
   final List<Register> register;
 
-  RegisterState({
+  RegistersState({
   this.isLastPage = false, 
   this.limit = 10, //todo ver 
   this.offset = 0,
@@ -78,7 +78,7 @@ class RegisterState {
 
 
 
-  RegisterState copyWhith({
+  RegistersState copyWhith({
 
   bool? isLastPage,
   int? limit,
@@ -86,7 +86,7 @@ class RegisterState {
   bool? isLoading,
   List<Register>? register,
 
-  }) => RegisterState(
+  }) => RegistersState(
 
   isLastPage: isLastPage ?? this.isLastPage,
   limit: limit ?? this.limit,

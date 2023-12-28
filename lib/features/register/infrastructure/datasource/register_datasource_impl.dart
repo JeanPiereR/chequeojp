@@ -4,13 +4,13 @@ import 'package:chequeo_f_h/features/register/domain/entities/register_entities.
 import 'package:chequeo_f_h/features/register/infrastructure/mappers/register_mapper.dart';
 import 'package:dio/dio.dart';
 
-class  RegisterDatasourceImpl extends RegisterDatasource {
+class  RegistersDatasourceImpl extends RegisterDatasource {
 
   ///Implementacion de DIO
   late final Dio dio;
   final String acessToken;
 
-  RegisterDatasourceImpl({
+  RegistersDatasourceImpl({
     required this.acessToken
   }) : dio = Dio (
     BaseOptions(

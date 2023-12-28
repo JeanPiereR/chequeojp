@@ -2,11 +2,11 @@ import 'package:chequeo_f_h/features/register/domain/datasources/register_dataso
 import 'package:chequeo_f_h/features/register/domain/entities/register_entities.dart';
 import 'package:chequeo_f_h/features/register/domain/repositories/register_repository.dart';
 
-class RegisterRepositoyImpl extends RegisterRepository {
+class RegistersRepositoyImpl extends RegistersRepository {
 
   final RegisterDatasource datasource;
 
-  RegisterRepositoyImpl(this.datasource);
+  RegistersRepositoyImpl(this.datasource);
 
   @override
   Future<Register> createUpdateRegister(Map<String, dynamic> registerLike) {

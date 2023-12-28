@@ -5,13 +5,13 @@ import 'package:chequeo_f_h/features/register/infrastructure/repositories/regist
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
-final registerRepositoryProvider = Provider<RegisterRepository>((ref) {
+final registersRepositoryProvider = Provider<RegistersRepository>((ref) {
   
   final acessToken = ref.watch( authProvider ).user?.token ?? '';
 
-  final registerRepository = RegisterRepositoyImpl(
-      RegisterDatasourceImpl( acessToken: acessToken )
+  final registersRepository = RegistersRepositoyImpl(
+      RegistersDatasourceImpl( acessToken: acessToken )
     ); 
 
-  return registerRepository;
+  return registersRepository;
 });
