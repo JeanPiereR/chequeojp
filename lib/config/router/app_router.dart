@@ -6,6 +6,7 @@ import 'package:chequeo_f_h/presentation/screens/ARC/arc_screen.dart';
 import 'package:chequeo_f_h/presentation/screens/biblioteca/biblioteca_screen.dart';
 import 'package:chequeo_f_h/presentation/screens/home/home_screen.dart';
 import 'package:chequeo_f_h/presentation/screens/lista_preuso/preuso_screen.dart';
+import 'package:chequeo_f_h/presentation/screens/usuarios/usuario_screen.dart';
 import 'package:chequeo_f_h/presentation/screens/usuarios/usuarios.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -63,10 +64,19 @@ final goRouterProvider = Provider((ref) {
         builder: (context, state) => const UsersScreen(),
       ),
 
+      ///En este caso se asigna el ID del dato
+      GoRoute(
+      path: '/usuarios/:id',
+      builder: (context, state) => UserScreen(
+        userId: state.params['id'] ?? 'No-Id',
+        ),
+      ),
+
       GoRoute(
       path: '/registro',
       builder: (context, state) => const RegisterPage(),
       ),
+
 
     ],
 

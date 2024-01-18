@@ -1,11 +1,10 @@
 import 'package:chequeo_f_h/features/register/presentation/providers/register_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 
-class UsersScreen extends StatelessWidget {
-  const UsersScreen({super.key});
+class UsersScreenCopy extends StatelessWidget {
+  const UsersScreenCopy({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +29,7 @@ class UsersScreen extends StatelessWidget {
     );
   }
 }
+
 
 
 
@@ -104,27 +104,19 @@ class _UsersScreenState extends ConsumerState {
           DataCell(Text("")),
         ])
       ];
-
     } else if (registerState.register.isEmpty) {
-
       return [
         const DataRow(cells: [
           DataCell(Text("Error al cargar datos")),
           DataCell(Text("")),
         ])
       ];
-
     } else {
-
       return registerState.register.map((register) {
       return DataRow(
         cells: [
           DataCell(
-            ///Lo envolvemos en el Gesture para activar el OnTap
-            GestureDetector(
-              onTap: () => context.push('/usuarios/${ register.id }') ,
-              child: Text(register.fullName)
-              ),
+            Text(register.fullName),
           ),
           DataCell(
             Text(register.email),
